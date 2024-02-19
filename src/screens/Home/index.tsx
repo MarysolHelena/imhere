@@ -7,49 +7,47 @@ import {
   Alert,
 } from "react-native";
 
+import React, { useState } from "react";
+
 import { Participant } from "../../components/Participant";
 
 import { styles } from "./styles";
 
 export function Home() {
-  const participants = [
-    "Marysol",
-    "Mateus",
-    "Mika",
-    "Helena",
-    "Ana",
-    "Bia",
-    "Lorelai",
-    "Rory",
-    "Logan",
-    "José",
-    "Cecilia",
-    "Victoria",
-    "João",
-  ];
+  const [participants, setParticipants] = useState<string[]>([]);
+  //const [estado, atualiza] = useState(['Helena']);
+
+  const [participantName, setParticipantName] = useState("");
 
   function handleParticipantAdd() {
     //verificar determinado valor dentro do array
-    if (participants.includes("Marysol")) {
+    if (participants.includes(participantName)) {
       return Alert.alert(
         "Participante existe",
         "Já existe um participante na lista com esse nome."
       );
     }
+
+    setParticipants((prevState) => [...prevState, participantName]);
+    setParticipantName(""); //define o estado como vazio apos adicionar um participant
   }
 
   function handleParticipantRemove(name: string) {
+
     Alert.alert("Remover", `Remover o participante ${name}?`, [
       {
-        text: 'Sim',
-        onPress: () => Alert.alert("Deletado!")
+        text: "Sim",
+        onPress: () => setParticipants((prevState) =>
+        prevState.filter((participant) => participant !== name)
+      ),
       },
       {
-        text:'Não',
-        style: 'cancel'
-      }
-    ])
+        text: "Não",
+        style: "cancel",
+      },
+    ]);
   }
+
 
   return (
     <View style={styles.container}>
@@ -61,6 +59,8 @@ export function Home() {
           style={styles.input}
           placeholder="Nome do participante"
           placeholderTextColor={"#6b6b6b"}
+          onChangeText={setParticipantName}
+          value={participantName} //define o estado como vazio apos adicionar um participant
         />
 
         <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
