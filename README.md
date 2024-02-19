@@ -1,6 +1,6 @@
 # Lista de Convidados - Aplicativo de Evento
 
-![Imagem do Aplicativo](./path/to/your/app/image.png) ./
+![Imagem do Aplicativo](./src/screens/Home/screens.png) 
 
 Este é um aplicativo simples para gerenciar a lista de convidados de um evento. Ele permite adicionar, remover e visualizar os participantes do evento.
 
