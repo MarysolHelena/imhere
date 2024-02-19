@@ -20,6 +20,8 @@ export function Home() {
   const [participantName, setParticipantName] = useState("");
 
   function handleParticipantAdd() {
+
+   
     //verificar determinado valor dentro do array
     if (participants.includes(participantName)) {
       return Alert.alert(
@@ -33,6 +35,7 @@ export function Home() {
   }
 
   function handleParticipantRemove(name: string) {
+    
 
     Alert.alert("Remover", `Remover o participante ${name}?`, [
       {
